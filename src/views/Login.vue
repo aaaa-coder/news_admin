@@ -35,6 +35,7 @@ export default {
         if (res.status === 200) {
           const { data } = res.data;
           localStorage.setItem("token", data.token);
+          this.$router.push("/");
           this.$message.success("登录成功");
         }
       });
