@@ -2,11 +2,11 @@
   <el-container>
     <el-aside width="200px">
       <h2>白马头条</h2>
-      <el-menu :default-openeds="['1', '3']">
-        <el-submenu index="2">
+      <el-menu>
+        <el-submenu index="2" @click.native="$router.push('/postList')">
           <template slot="title"><i class="el-icon-menu"></i>文章列表</template>
         </el-submenu>
-        <el-submenu index="3">
+        <el-submenu index="3" @click.native="$router.push('/publish')">
           <template slot="title"
             ><i class="el-icon-setting"></i>发布文章</template
           >
@@ -15,7 +15,9 @@
     </el-aside>
     <el-container>
       <el-header>Header</el-header>
-      <el-main>Main</el-main>
+      <el-main>
+        <router-view />
+      </el-main>
     </el-container>
   </el-container>
 </template>

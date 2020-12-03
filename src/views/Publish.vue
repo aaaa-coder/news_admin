@@ -1,5 +1,5 @@
 <template>
-  <div>这是文章列表</div>
+  <div>发布文章</div>
 </template>
 
 <script>
