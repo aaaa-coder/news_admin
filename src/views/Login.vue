@@ -9,7 +9,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">登录</el-button>
-        <el-button>重置</el-button>
+        <el-button @click="reset">重置</el-button>
       </el-form-item>
     </el-form>
   </el-row>
@@ -39,6 +39,9 @@ export default {
           this.$message.success("登录成功");
         }
       });
+    },
+    reset() {
+      this.form = {};
     },
   },
 };
