@@ -3,10 +3,16 @@
     <el-aside width="200px">
       <h2>白马头条</h2>
       <el-menu>
-        <el-submenu index="2" @click.native="$router.push('/postList')">
+        <el-submenu
+          index="2"
+          @click.native="$router.push('/postList').catch((res) => {})"
+        >
           <template slot="title"><i class="el-icon-menu"></i>文章列表</template>
         </el-submenu>
-        <el-submenu index="3" @click.native="$router.push('/editPost')">
+        <el-submenu
+          index="3"
+          @click.native="$router.push('/editPost').catch((res) => {})"
+        >
           <template slot="title"
             ><i class="el-icon-setting"></i>发布文章</template
           >
