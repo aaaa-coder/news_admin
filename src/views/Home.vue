@@ -6,7 +6,7 @@
         <el-submenu index="2" @click.native="$router.push('/postList')">
           <template slot="title"><i class="el-icon-menu"></i>文章列表</template>
         </el-submenu>
-        <el-submenu index="3" @click.native="$router.push('/publish')">
+        <el-submenu index="3" @click.native="$router.push('/editPost')">
           <template slot="title"
             ><i class="el-icon-setting"></i>发布文章</template
           >
