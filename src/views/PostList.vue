@@ -15,7 +15,7 @@
       <el-table-column label="封面缩略图">
         <template slot-scope="scope">
           <img
-            :src="scope.row.cover[0].url"
+            :src="scope.row.cover[0].url | fixImgUrl"
             v-if="scope.row.cover.length > 0"
             class="thumbnail"
           />
@@ -24,7 +24,12 @@
       </el-table-column>
       <el-table-column label="操作">
         <template>
-          <el-button type="primary" size="small">编辑</el-button>
+          <el-button
+            type="primary"
+            size="small"
+            @click="$router.push('/editPost?id=') + this.$router.query.id"
+            >编辑</el-button
+          >
           <el-button type="danger" size="small">删除</el-button>
         </template>
       </el-table-column>
