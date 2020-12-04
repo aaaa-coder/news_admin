@@ -35,7 +35,8 @@ export default {
         if (res.status === 200) {
           const { data } = res.data;
           localStorage.setItem("token", data.token);
-          this.$router.push("/");
+          localStorage.setItem("user", JSON.stringify(data.user));
+          this.$router.push("/postList");
           this.$message.success("登录成功");
         }
       });

@@ -3,8 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from "../views/Login.vue"
 import PostList from "../views/PostList.vue"
-import Publish from "../views/Publish.vue"
-
+import EditPost from "../views/EditPost.vue"
 Vue.use(VueRouter)
 
 const routes = [
@@ -18,8 +17,8 @@ const routes = [
         component: PostList,
       },
       {
-        path: 'publish',
-        component: Publish
+        path: 'editPost',
+        component: EditPost
       }]
   },
   {

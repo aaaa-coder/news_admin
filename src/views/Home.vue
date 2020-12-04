@@ -14,7 +14,15 @@
       </el-menu>
     </el-aside>
     <el-container>
-      <el-header>Header</el-header>
+      <el-header>
+        <div class="info">
+          <img
+            :src="$axios.defaults.baseURL + this.userInfo.head_img"
+            class="avatar"
+          />
+          <span class="name">我是{{ userInfo.nickname }}</span>
+        </div>
+      </el-header>
       <el-main>
         <router-view />
       </el-main>
@@ -23,7 +31,17 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      userInfo: {},
+    };
+  },
+  methods: {},
+  created() {
+    this.userInfo = JSON.parse(localStorage.getItem("user"));
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -59,11 +77,24 @@ export default {};
     content: "";
   }
 }
+.el-header {
+  .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 500px;
+    .avatar {
+      width: 37px;
+      height: 37px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+  }
+}
 .el-main {
   background-color: #f2f2f2;
   color: #333;
-  text-align: center;
-  line-height: 160px;
 }
 
 body > .el-container {
