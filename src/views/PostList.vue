@@ -29,6 +29,15 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :page-sizes="[2, 5, 10, 20]"
+      :page-size="10"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total"
+    >
+    </el-pagination>
   </div>
 </template>
 
@@ -37,17 +46,40 @@ export default {
   data() {
     return {
       postList: [],
+      total: 0,
+      pageIndex: 1,
+      pageSize: 10,
     };
   },
   created() {
-    this.$axios({
-      url: "/post",
-    }).then((res) => {
-      if (res.status === 200) {
-        this.postList = res.data.data;
-        console.log(this.postList);
-      }
-    });
+    this.loadPost();
+  },
+  methods: {
+    handleSizeChange(total) {
+      console.log(total);
+      this.pageSize = total;
+      this.loadPost();
+    },
+    handleCurrentChange(currentPage) {
+      // console.log(currentPage);
+      this.pageIndex = currentPage;
+      this.loadPost();
+    },
+    loadPost() {
+      this.$axios({
+        url: "/post",
+        params: {
+          pageIndex: this.pageIndex,
+          pageSize: this.pageSize,
+        },
+      }).then((res) => {
+        if (res.status === 200) {
+          this.postList = res.data.data;
+          console.log(res);
+          this.total = res.data.total;
+        }
+      });
+    },
   },
 };
 </script>
