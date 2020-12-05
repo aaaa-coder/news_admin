@@ -33,8 +33,10 @@
         </el-upload>
       </el-form-item>
       <el-form-item label="类型" class="post_type">
-        <el-radio v-model="form.type" label="1">普通文章</el-radio>
-        <el-radio v-model="form.type" label="2">视频文章</el-radio>
+        <el-radio-group v-model="form.type">
+          <el-radio :label="1">普通文章</el-radio>
+          <el-radio :label="2">视频文章</el-radio>
+        </el-radio-group>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" size="medium" @click="upload">提交</el-button>
@@ -54,10 +56,11 @@ export default {
       form: {
         title: "",
         content: "",
-        type: "",
+        type: 1,
         cover: [],
         categories: [],
       },
+
       categoryList: [],
       checkList: [],
       token: localStorage.getItem("token"),
@@ -109,9 +112,7 @@ export default {
             img.uid = img.id;
             return img;
           });
-
           this.form = data;
-          console.log(this.form);
         }
       });
     },
@@ -119,7 +120,11 @@ export default {
       file.id = res.data.id;
       this.form.cover.push(file);
     },
-    currentRemove(file, fileList) {},
+    currentRemove(file, fileList) {
+      console.log(file);
+      console.log(file.id);
+      console.log(this.form.cover);
+    },
     upload() {
       this.$axios({
         method: "post",
